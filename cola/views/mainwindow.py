@@ -5,6 +5,7 @@ import cola
 from cola import settings
 from cola import qtutils
 from cola.views import log
+from cola.views import dag
 from cola.qtutils import tr
 from cola.views import status
 from cola.views.standard import create_standard_widget
@@ -188,6 +189,7 @@ class MainWindow(MainWindowBase):
         self.menu_rebase_branch = self.create_action('Rebase...')
         self.menu_branch_review = self.create_action('Review...')
         self.menu_classic = self.create_action('Cola Classic...')
+        self.menu_dag = self.create_action('DAG...')
 
         # Create the application menu
         self.menubar = QtGui.QMenuBar(self)
@@ -304,6 +306,7 @@ class MainWindow(MainWindowBase):
 
         # Tools Menu
         self.tools_menu = self.create_menu('Tools', self.menubar)
+        self.tools_menu.addAction(self.menu_dag)
         self.tools_menu.addAction(self.menu_classic)
         self.tools_menu.addAction(self.diffdockwidget.toggleViewAction())
         self.tools_menu.addAction(self.actiondockwidget.toggleViewAction())

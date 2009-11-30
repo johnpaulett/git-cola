@@ -17,6 +17,7 @@ from cola import settings
 from cola import signals
 from cola import resources
 from cola.qtutils import SLOT
+from cola.views import dag
 from cola.views import about
 from cola.views.syntax import DiffSyntaxHighlighter
 from cola.views.mainwindow import MainWindow
@@ -165,6 +166,7 @@ class MainView(MainWindow):
             (self.menu_undo, self.commitmsg.undo),
             (self.menu_redo, self.commitmsg.redo),
             (self.menu_classic, classic.cola_classic),
+            (self.menu_dag, dag.git_dag),
         )
         for menu, callback in actions:
             self.connect(menu, SIGNAL('triggered()'), callback)
