@@ -2,7 +2,7 @@ NUTRITIONAL FACTS
 -----------------
 
 ACTIVE INGREDIENTS
-    # apt-get install git-core python python-qt4
+    # apt-get install git-core python python-qt4 jsonpickle
 
 Python 2.4 or newer
     ~ http://python.org/

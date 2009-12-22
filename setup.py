@@ -23,6 +23,7 @@ def main():
         _check_python_version()
         _check_git_version()
         _check_pyqt_version()
+        _check_jsonpickle_version()
         _build_translations()      # msgfmt: .po -> .qm
 
     # First see if there is a version file (included in release tarballs),
@@ -88,7 +89,6 @@ def cola_data_files():
             _lib_path('cola/models/*.py'),
             _lib_path('cola/controllers/*.py'),
             _lib_path('cola/views/*.py'),
-            _lib_path('jsonpickle/*.py'),
             _lib_path('simplejson/*.py')]
 
     if sys.platform == 'darwin':
@@ -142,6 +142,21 @@ def _check_pyqt_version():
                           'Found %s' % (version.get('pyqt'), pyqtver))
     sys.exit(1)
 
+def _check_jsonpickle_version():
+    """Check the minimum jsonpickle version
+    """
+    jsonpicklever = 'None'
+    try:
+        import jsonpickle
+        jsonpicklever = jsonpickle.__version__
+        if version.check('jsonpickle', jsonpicklever):
+            return
+    except ImportError:
+        pass
+    print >> sys.stderr, ('jsonpickle version %s or newer required.  '
+                          'Found %s' % (version.get('jsonpickle'),
+                                        jsonpicklever))
+    sys.exit(1)
 
 def _dirty(src, dst):
     if not os.path.exists(dst):
