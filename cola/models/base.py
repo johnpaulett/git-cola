@@ -9,7 +9,15 @@ import imp
 import types
 from cStringIO import StringIO
 
-import jsonpickle
+# This module gets imported by setup.py, which itself checks
+# if jsonpickle is installed.  We warn instead of halting execution
+# of setup.py. 
+try:
+    import jsonpickle
+except ImportError, e:
+    import warnings
+    warnings.warn('jsonpickle not installed, required to use git-cola',
+                  ImportWarning)
 
 from cola import core
 
